@@ -75,4 +75,14 @@ docker exec web ls -l /usr/share/nginx/html
 docker exec -u 1000:1000 web id
 ```
 
+### Docker Gui
+Portainer CE(Community Edition). Portainer Community Edition is a lightweight service delivery platform for containerized applications that can be used to manage Docker, Swarm, Kubernetes and ACI environments. It runs as a container
+```bash
+# Create a volume to store
+docker volume create portainer_data
+
+# Run portainer as a service
+docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:2.20.2
+```
+The current version of portainer could be different now. Refer to the [official documentation](https://docs.portainer.io/start/install-ce/server/docker/linux)
 
