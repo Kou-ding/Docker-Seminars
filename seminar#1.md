@@ -1,3 +1,4 @@
+# 1st Seminar Notes
 ### Basics
 Quality of life docker tip
 ```bash
