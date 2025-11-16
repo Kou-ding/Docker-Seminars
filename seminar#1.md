@@ -1,5 +1,5 @@
 # 1st Seminar Notes
-### Basics
+### Preparation
 Quality of life docker tip
 ```bash
 # add user to docker group to avoid using sudo all the time
@@ -15,6 +15,7 @@ docker --version
 docker info
 ```
 
+### Basic container commands
 My first container
 ```bash
 # run: run a container
@@ -45,12 +46,33 @@ docker rm nginx-web
 
 # remove an image
 docker rmi nginx:alpine
-```
 
-Advanced commands
-```bash
 # remove all stopped containers
 docker container prune
+```
+
+If you want to enter the cli of your container you can do so.
+```bash
+# i: interactive session
+# t: tty environment 
+docker run -it --name ubu ubuntu
+
+# after exiting inside of the tty
+# a: attach
+docker start -ia ubu
+# no need to create a tty since it was already created at the run command using the -t flag.
+```
+
+It is possible to execute commands on a container even when it is detached(running on the background)
+```bash 
+# Run a simple nginx container
+docker run -d --rm --name web -p 8080:80 nginx:alpine
+
+# While it being detached execute a simple list command inside the container
+docker exec web ls -l /usr/share/nginx/html
+
+# Optional: Execute commands (e.g. id) as a certain user of a certain group (here user=1000 group=1000) 
+docker exec -u 1000:1000 web id
 ```
 
 
